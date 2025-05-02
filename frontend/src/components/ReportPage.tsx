@@ -21,6 +21,10 @@ const ReportPage: React.FC = () => {
           'Authorization': `Bearer ${keycloak.token}`
         }
       });
+      
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
 
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
